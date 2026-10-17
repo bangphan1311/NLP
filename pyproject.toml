@@ -1,0 +1,23 @@
+[project]
+name = "vietnamese-word-embedding"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "HP VICTUS", email = "24021384@vnu.edu.vn" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "datasets>=5.1.0",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+    "scikit-learn>=1.9.1",
+    "underthesea>=9.5.0",
+]
+
+[project.scripts]
+vietnamese-word-embedding = "vietnamese_word_embedding:main"
+
+[build-system]
+requires = ["uv_build>=0.12.6,<0.13.0"]
+build-backend = "uv_build"
