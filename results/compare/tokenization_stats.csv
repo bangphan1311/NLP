@@ -1,0 +1,3 @@
+﻿space,vocab_size,tokens_kept,loss_first,loss_last,minutes_per_epoch
+tach_tu,65478,12183350,2.75830954,1.71322958,6.090399000000001
+khong_tach_tu,36197,17263780,2.6705487,1.95671019,4.287772333333334
