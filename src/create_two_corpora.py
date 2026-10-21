@@ -1,8 +1,8 @@
 import json
+import unicodedata
 from pathlib import Path
 
 from underthesea import word_tokenize
-
 
 INPUT_PATH = Path("data/processed/corpus_cleaned.jsonl")
 OUTPUT_DIR = Path("data/processed")
@@ -11,15 +11,23 @@ OUTPUT_SEGMENTED = OUTPUT_DIR / "corpus_segmented.jsonl"
 
 
 def main():
+    if not INPUT_PATH.exists():
+        raise FileNotFoundError(
+            f"Không tìm thấy {INPUT_PATH}. "
+            "Hãy chạy src/clean_corpus.py trước."
+        )
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
     total = 0
 
     with (
         INPUT_PATH.open("r", encoding="utf-8") as source,
-        OUTPUT_UNSEGMENTED.open("w", encoding="utf-8", newline="\n") as unsegmented_file,
-        OUTPUT_SEGMENTED.open("w", encoding="utf-8", newline="\n") as segmented_file,
+        OUTPUT_UNSEGMENTED.open(
+            "w", encoding="utf-8", newline="\n"
+        ) as unsegmented_file,
+        OUTPUT_SEGMENTED.open(
+            "w", encoding="utf-8", newline="\n"
+        ) as segmented_file,
     ):
         for line in source:
             if not line.strip():
@@ -27,9 +35,13 @@ def main():
 
             document = json.loads(line)
             title = document.get("title", "")
-            text = document.get("text", "")
+            text = unicodedata.normalize(
+                "NFC", document.get("text", "")
+            )
 
-            # Giữ nguyên văn bản để làm corpus không tách từ.
+            if not text.strip():
+                continue
+
             unsegmented_record = {
                 "title": title,
                 "text": text,
@@ -38,7 +50,6 @@ def main():
                 json.dumps(unsegmented_record, ensure_ascii=False) + "\n"
             )
 
-            # Tách từ tiếng Việt; dấu gạch dưới nối các thành phần của một từ ghép.
             segmented_text = word_tokenize(text, format="text")
             segmented_record = {
                 "title": title,
@@ -50,23 +61,11 @@ def main():
 
             total += 1
             if total % 1000 == 0:
-                print(f"Done {total:,} documents")
+                print(f"Đã xử lý {total:,} documents")
 
-  
-    print(f"Số documents: {total:,}")
+    print(f"Tổng documents: {total:,}")
     print(f"Corpus không tách từ: {OUTPUT_UNSEGMENTED}")
     print(f"Corpus có tách từ: {OUTPUT_SEGMENTED}")
-
-    # Thử
-    with OUTPUT_UNSEGMENTED.open("r", encoding="utf-8") as file:
-        original = json.loads(next(file))
-    with OUTPUT_SEGMENTED.open("r", encoding="utf-8") as file:
-        segmented = json.loads(next(file))
-
-    print("\n--- MẪU KHÔNG TÁCH TỪ ---")
-    print(original["text"][:500])
-    print("\n--- MẪU CÓ TÁCH TỪ ---")
-    print(segmented["text"][:500])
 
 
 if __name__ == "__main__":

@@ -15,7 +15,6 @@ def clean_text(text: str) -> str:
 
     text = unicodedata.normalize("NFC", html.unescape(text))
 
-    # Remove comments, URLs, HTML tags and remaining wiki markup.
     text = re.sub(r"<!--.*?-->", " ", text, flags=re.DOTALL)
     text = re.sub(
         r"<(ref|gallery|math|syntaxhighlight)\b[^>]*>.*?</\1\s*>",
@@ -27,14 +26,12 @@ def clean_text(text: str) -> str:
     text = re.sub(r"<[^>]+>", " ", text)
     text = re.sub(r"https?://\S+|www\.\S+", " ", text)
 
-    # Remove common residual wiki syntax.
     text = re.sub(r"__[A-Z][A-Z0-9_]*__", " ", text)
     text = re.sub(r"\[\[([^\]|]+)\|([^\]]+)\]\]", r"\2", text)
     text = re.sub(r"\[\[([^\]]+)\]\]", r"\1", text)
     text = re.sub(r"\[(?:https?://\S+)\s+([^\]]+)\]", r"\1", text)
     text = re.sub(r"'{2,5}", "", text)
 
-    # Remove leftover template delimiters and formatting artifacts.
     text = re.sub(r"\{\{|\}\}|\{\||\|\}", " ", text)
     text = re.sub(r"[{}\[\]]", " ", text)
     text = re.sub(r"(?m)^\s*=+\s*(.*?)\s*=+\s*$", r"\1", text)
@@ -48,11 +45,9 @@ def clean_text(text: str) -> str:
         if not line:
             continue
 
-        # Discard lines that contain no letters or digits.
         if not re.search(r"[A-Za-zÀ-ỹ0-9]", line):
             continue
 
-        # Remove duplicate adjacent lines.
         if line == previous_line:
             continue
 
