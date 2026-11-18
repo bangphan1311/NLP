@@ -1,0 +1,23 @@
+{
+  "representation": "TF-IDF unigram + bigram",
+  "frequency": "number of train documents containing each feature",
+  "chi_square_input": "binary presence",
+  "mutual_information_input": "binary presence, discrete_features=True",
+  "k_values": [
+    5000,
+    15000
+  ],
+  "l1_C_values": [
+    0.1,
+    1.0
+  ],
+  "l1_threshold": 1e-05,
+  "classifier_C": 1.0,
+  "classifier_solver": "liblinear",
+  "classifier_max_iter": 1000,
+  "seed": 42,
+  "selection_metric": "dev binary F1, positive label = 1",
+  "chosen_configuration": "Không chọn lọc",
+  "chosen_feature_count": 30000,
+  "timing": "selection excludes TF-IDF creation; train/dev excludes selection"
+}
