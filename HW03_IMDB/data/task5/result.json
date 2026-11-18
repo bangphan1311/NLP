@@ -1,0 +1,10 @@
+{
+  "model": "BiLSTM",
+  "best_epoch": 5,
+  "dev_accuracy": 0.8960831334932055,
+  "dev_f1": 0.896,
+  "checkpoint_reload_verified": true,
+  "training_with_dev_seconds": 147.976076971,
+  "parameters": 3235777,
+  "gpu": "Tesla T4"
+}
