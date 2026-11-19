@@ -1,0 +1,10 @@
+{
+  "model": "FacebookAI/roberta-base",
+  "best_epoch": 2,
+  "dev_f1": 0.9352248394004282,
+  "training_with_dev_and_saving_seconds": 944.2575127060002,
+  "parameters": 124647170,
+  "gpu": "Tesla T4",
+  "dev_accuracy": 0.9355182520650147,
+  "checkpoint_reload_verified": true
+}

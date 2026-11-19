@@ -1,0 +1,3 @@
+model,best_epoch,dev_f1,training_with_dev_and_saving_seconds,parameters,gpu,dev_accuracy,checkpoint_reload_verified
+google-bert/bert-base-uncased,3,0.919205298013245,933.3278955400001,109483778,Tesla T4,0.9187316813216094,True
+FacebookAI/roberta-base,2,0.9352248394004282,944.2575127060002,124647170,Tesla T4,0.9355182520650147,True

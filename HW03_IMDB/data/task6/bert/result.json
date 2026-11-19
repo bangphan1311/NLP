@@ -1,0 +1,10 @@
+{
+  "model": "google-bert/bert-base-uncased",
+  "best_epoch": 3,
+  "dev_f1": 0.919205298013245,
+  "training_with_dev_and_saving_seconds": 933.3278955400001,
+  "parameters": 109483778,
+  "gpu": "Tesla T4",
+  "dev_accuracy": 0.9187316813216094,
+  "checkpoint_reload_verified": true
+}
