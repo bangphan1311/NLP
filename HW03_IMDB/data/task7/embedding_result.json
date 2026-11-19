@@ -1,0 +1,19 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "C_selected_by_dev": 10.0,
+  "dev_f1": 0.8962038757632068,
+  "test_samples": 1000,
+  "test_accuracy": 0.904,
+  "test_f1": 0.9024390243902439,
+  "embedding_dimension": 896,
+  "max_length": 256,
+  "batch_size": 16,
+  "pooling": "masked mean of last hidden state, L2 normalized",
+  "prompt_used": false,
+  "llm_fine_tuned": false,
+  "train_embedding_seconds": 330.10273469799995,
+  "dev_embedding_seconds": 58.19762246600021,
+  "test_embedding_seconds": 15.227228246999402,
+  "test_prediction_seconds": 0.002468602000590181,
+  "classifier_reload_verified": true
+}

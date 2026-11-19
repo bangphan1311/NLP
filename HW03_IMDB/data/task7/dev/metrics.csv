@@ -1,0 +1,3 @@
+method,samples,invalid,accuracy_all,f1_valid_only,seconds
+zero_shot,100,0,0.89,0.8932038834951457,2.779679449000014
+few_shot,100,1,0.84,0.8484848484848485,7.121898452000096
